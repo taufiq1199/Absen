@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan to Access</title>
+    <link rel="icon" type="image/png" href="https://alutsmani.id/public_html/psb/gambar/icon/psb.ico?raw=true">
+    <meta property="og:image" content="https://alutsmani.id/public_html/psb/gambar/icon/psb.ico?raw=true">
+    <meta property="og:title" content="Scan to Access">
+    <meta property="og:description" content="form hanya dapat diakses melalui barcode.">
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #ffffff;
+    color: rgb(255, 0, 0);
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Hapus gap */
+}
+
+.message-container {
+    text-align: center;
+    padding: 0; /* Hapus padding */
+    background: transparent;
+}
+
+.message-container img {
+    max-width: 100px;
+}
+
+.message-container h1 {
+    font-size: 2rem;
+    margin: 0; /* Hapus margin */
+}
+
+.message-container p {
+    font-size: 1rem;
+    margin: 0; /* Hapus margin */
+}
+
+video {
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: rotate 4s linear infinite;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        gap: 0; /* Hapus gap pada mobile */
+    }
+
+    video {
+        max-width: 50%; /* Kurangi lebar maksimum untuk video */
+        height: auto; /* Pastikan proporsi video tetap terjaga */
+    }
+
+    .message-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .message-container p {
+        font-size: 0.9rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('access') && urlParams.get('access') === 'true') {
+            window.location.href = "https://forms.gle/kfHnSF5svqkGdpLe6";
+        } else {
+            document.body.innerHTML = `
+                <div class="container">
+                    <div class="message-container">
+                        <img src="https://alutsmani.id/public_html/psb/gambar/icon/psb.ico?raw=true" alt="Logo PSB">
+                        <h1>Akses Ditolak</h1>
+                        <p>Anda harus memindai barcode untuk mengakses FORM ini.</p>
+                    </div>
+                    <video controls autoplay loop muted>
+                        <source src="https://github.com/mtsalutsmani/MTsAU/blob/main/BARC.mp4?raw=true" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
